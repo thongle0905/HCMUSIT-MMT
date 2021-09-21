@@ -1,6 +1,8 @@
 package khtn.network;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import javax.swing.JFrame;
@@ -91,6 +93,14 @@ public class Client {
 
 		btnConnect = new JButton("K\u1EBFt n\u1ED1i");
 		btnConnect.setBounds(335, 10, 89, 23);
+		btnConnect.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ClientSocket cs = new ClientSocket();
+				cs.setHostName(txtConnect.getText());
+				cs.sendCmd("Connect");
+			};
+		});
 		frame.getContentPane().add(btnConnect);
 
 		JButton btnProcesses = new JButton("<html>Process<br/>Running</html>");
@@ -117,6 +127,18 @@ public class Client {
 
 		JButton btnEditRegistry = new JButton("S\u1EEDa registry");
 		btnEditRegistry.setBounds(109, 173, 216, 77);
+		btnEditRegistry.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					EditRegistry window = new EditRegistry();
+					window.getFrame().setVisible(true);
+				} catch (Exception exc) {
+					exc.printStackTrace();
+				}
+			}
+		});
 		frame.getContentPane().add(btnEditRegistry);
 
 		JButton btnExit = new JButton("Tho\u00E1t");

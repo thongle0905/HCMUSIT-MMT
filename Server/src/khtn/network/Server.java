@@ -43,7 +43,18 @@ public class Server {
 				BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));) {
 			String inputLine;
 			while ((inputLine = in.readLine()) != null) {
-				out.println(inputLine + (inputLine.equals("Exactly") ? "Exactly" : null));
+				switch(inputLine) {
+					case "Connect":
+						out.println("Connect Successfully!");
+						break;
+					case "Insert registry":
+						out.println("Insert registry!");
+						break;
+					default:
+						out.println("Can't understand!");
+						break;				
+				}
+				out.println("Next >");					
 			}
 		} catch (IOException e) {
 			System.out.println(
